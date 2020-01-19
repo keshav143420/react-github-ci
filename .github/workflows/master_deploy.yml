@@ -20,7 +20,7 @@ jobs:
       - name: Cache Node.js modules
         uses: actions/cache@v1
         with:
-          path: ~/.npm
+          path: ./node_modules/
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-node-
@@ -30,31 +30,6 @@ jobs:
         run: |
           npm ci
           npm run test:ci
-          echo "PWD"
-          pwd
-          echo "contents in ~/.npm"
-          ls -la ~/.npm
-          du -sh ~/.npm/*
-          echo "------------------------------------------------------------------------------------------"
-          echo "contents in ."
-          ls -la
-          du -sh *
-          echo "------------------------------------------------------------------------------------------"
-          echo "contents in .."
-          cd ..
-          ls -la
-          du -sh *
-          echo "------------------------------------------------------------------------------------------"
-          echo "contents in ../.."
-          cd ..
-          ls -la
-          du -sh *
-          echo "------------------------------------------------------------------------------------------"
-          echo "contents in ../../.."
-          cd ..
-          ls -la
-          du -sh *
-          echo "------------------------------------------------------------------------------------------"
 
       - name: Deploy to GH Pages
         run: |
