@@ -1,37 +1,25 @@
-name: Build and Deploy
+name: MasterDeployCI
 on:
   push:
     branches:
       - master
 jobs:
-  install-and-test:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [12.x]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install and Test
+      - name: Install Packages
+        run: npm install
+      - name: Deploy to GH Pages
         run: |
-          npm install
-          npm run test
-        env:
-          CI: true
-
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.MY_CRED }}
-          BRANCH: gh-pages
-          FOLDER: build
-          BUILD_SCRIPT: npm install && npm run deploy
+          git config user.email "keshav143420@gmail.com"
+          git config user.name "keshava kotri"
+          git remote set-url origin https://keshav143420:${{ secrets.MY_CRED }}@github.com/keshav143420/react-github-ci.git
+          npm run deploy
