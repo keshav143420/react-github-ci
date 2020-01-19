@@ -16,11 +16,18 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+        run: |
+          pwd
+          ls -la
 
       - name: Cache Node.js modules
         uses: actions/cache@v1
         with:
           path: ~/.npm
+          run: |
+            pwd
+            ls -la
+            ls -lra ~/.npm
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-node-
@@ -28,6 +35,8 @@ jobs:
 
       - name: Install Packages
         run: |
+          pwd
+          ls -la
           npm run test:ci
 
       - name: Deploy to GH Pages
