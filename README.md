@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+[![Build status: Linux](https://github.com/keshav143420/react-github-ci/workflows/MasterDeployCI/badge.svg?style=flat-square)](https://github.com/keshav143420/react-github-ci/actions)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
