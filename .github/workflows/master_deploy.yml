@@ -10,21 +10,26 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Packages
+        run: |
+          npm install
+          npm run test:ci
+
       - uses: actions/cache@v1
+        name: Cache npm
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install Packages
-        run: |
-          npm install
-          npm run test:ci
+
       - name: Deploy to GH Pages
         run: |
           git config user.email "keshav143420@gmail.com"
