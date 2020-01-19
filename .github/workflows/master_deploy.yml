@@ -18,8 +18,8 @@ jobs:
       - name: Install Packages
         run: npm install
       - name: Deploy to GH Pages
-        run: |
-          git config user.email "keshav143420@gmail.com"
-          git config user.name "keshava kotri"
-          git remote set-url origin https://keshav143420:${{ secrets.MY_CRED }}@github.com/keshav143420/react-github-ci.git
-          npm run deploy
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build
+          BUILD_SCRIPT: npm run deploy
