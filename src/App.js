@@ -4,7 +4,7 @@ function App() {
   return (
     <div>
       <header className="App-header">
-        Working from CI..!
+        Hello World
       </header>
     </div>
   );
