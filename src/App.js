@@ -4,7 +4,7 @@ function App() {
   return (
     <div>
       <header className="App-header">
-        Welcome Home
+        Welcome To React
       </header>
     </div>
   );
