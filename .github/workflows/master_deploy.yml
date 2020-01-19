@@ -32,6 +32,13 @@ jobs:
           npm run test:ci
           pwd
           ls -la
+          ls -la ~/.npm
+          cd ..
+          ls -la
+          cd ..
+          ls -la
+          cd ..
+          ls -la
 
       - name: Deploy to GH Pages
         run: |
