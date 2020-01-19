@@ -21,14 +21,14 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ./node_modules/
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.OS }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-node-
+            ${{ runner.OS }}-npm-
             ${{ runner.OS }}-
 
       - name: Install Packages
         run: |
-          npm ci
+          npm install
           npm run test:ci
 
       - name: Deploy to GH Pages
